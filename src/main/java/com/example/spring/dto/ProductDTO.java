@@ -1,28 +1,19 @@
-package com.example.spring.entity;
+package com.example.spring.dto;
 
-import jakarta.persistence.*;
+import com.example.spring.entity.Category;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Entity
-@Getter
-@Setter
-@Table(name = "Product")
-public class Product {
+@Data
+public class ProductDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
-
     private String name;
     private String description;
     private Double price;
-
-    @ManyToOne
-    @JoinColumn(name = "category_id", nullable = false)
-    private Category category;
+    private Long CategoryId;
 
 
     public Long getId() {
@@ -57,34 +48,33 @@ public class Product {
         this.price = price;
     }
 
-    public Category getCategory() {
-        return category;
+    public Long getCategoryId() {
+        return CategoryId;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCategoryId(Long categoryId) {
+        CategoryId = categoryId;
     }
 
-
-    public Product(Long id, String name, String description, Double price, Category category) {
+    public ProductDTO(Long id, String name, String description, Double price, Long categoryId) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
-        this.category = category;
+        CategoryId = categoryId;
     }
 
-    public Product() {
+    public ProductDTO() {
     }
 
     @Override
     public String toString() {
-        return "Product{" +
+        return "ProductDTO{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", price=" + price +
-                ", category=" + category +
+                ", CategoryId=" + CategoryId +
                 '}';
     }
 }
