@@ -16,7 +16,15 @@ public class ProductApplication {
 	    componenet.MyConstuctorMethod();
 */
 
-        SpringApplication.run(ProductApplication.class, args);
+        /*ApplicationContext storebox=SpringApplication.run(ProductApplication.class, args);
+         Controller controller=storebox.getBean(Controller.class);
+        controller.display();
+
+*/
+
+
+     SpringApplication.run(ProductApplication.class, args);
+
 
 
     }
