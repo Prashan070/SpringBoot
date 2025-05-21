@@ -1,6 +1,5 @@
 package com.example.spring.dto;
 
-import com.example.spring.entity.Category;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,7 +12,7 @@ public class ProductDTO {
     private String name;
     private String description;
     private Double price;
-    private Long CategoryId;
+    private Long categoryId;
 
 
     public Long getId() {
@@ -49,11 +48,11 @@ public class ProductDTO {
     }
 
     public Long getCategoryId() {
-        return CategoryId;
+        return categoryId;
     }
 
     public void setCategoryId(Long categoryId) {
-        CategoryId = categoryId;
+        this.categoryId = categoryId;
     }
 
     public ProductDTO(Long id, String name, String description, Double price, Long categoryId) {
@@ -61,7 +60,7 @@ public class ProductDTO {
         this.name = name;
         this.description = description;
         this.price = price;
-        CategoryId = categoryId;
+        this.categoryId = categoryId;
     }
 
     public ProductDTO() {
@@ -74,7 +73,7 @@ public class ProductDTO {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", price=" + price +
-                ", CategoryId=" + CategoryId +
+                ", categoryId=" + categoryId +
                 '}';
     }
 }
