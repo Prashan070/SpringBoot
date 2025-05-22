@@ -1,7 +1,6 @@
 package com.example.spring.service;
 
 import com.example.spring.dto.ProductDTO;
-import org.springframework.http.HttpStatusCode;
 
 import java.util.List;
 

@@ -2,6 +2,7 @@ package com.example.spring.service;
 
 import com.example.spring.dto.CategoryDTO;
 import com.example.spring.entity.Category;
+import com.example.spring.exception.CategoryAlreadyExistException;
 import com.example.spring.mapper.CategoryMapper;
 import com.example.spring.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,13 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public CategoryDTO saveCategory(CategoryDTO categoryDTO) {
+
+        Optional<Category> isAvaiable = categoryRepository.findByName(categoryDTO.getName());
+
+        if (isAvaiable.isPresent()) {
+            throw new CategoryAlreadyExistException
+                    ("Duplicate " + categoryDTO.getName() +  " already exist");
+        }
 
         Category category = CategoryMapper.getCategory(categoryDTO);
         category = categoryRepository.save(category);

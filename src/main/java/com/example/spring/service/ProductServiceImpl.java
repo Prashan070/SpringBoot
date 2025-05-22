@@ -3,6 +3,7 @@ package com.example.spring.service;
 import com.example.spring.dto.ProductDTO;
 import com.example.spring.entity.Category;
 import com.example.spring.entity.Product;
+import com.example.spring.exception.CategoryNotFoundException;
 import com.example.spring.mapper.ProductMapper;
 import com.example.spring.repository.CategoryRepository;
 import com.example.spring.repository.ProductRepository;
@@ -10,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 
 @Service
@@ -29,7 +29,8 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductDTO saveProduct(ProductDTO productDTO) {
-        Category category = categoryRepository.findById(productDTO.getCategoryId()).orElseThrow(() -> new RuntimeException("Id not avaiable"));
+        Category category = categoryRepository.findById(productDTO.getCategoryId()).orElseThrow(() ->
+                new CategoryNotFoundException("Category" + productDTO.getCategoryId() +" Id not avaiable"));
         Product product = ProductMapper.getProduct(productDTO, category);
         product = productRepository.save(product);
         return ProductMapper.getProductDTO(product);
